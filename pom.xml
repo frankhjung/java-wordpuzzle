@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.marlo</groupId>
-    <artifactId>streams</artifactId>
+    <artifactId>games-wordpuzzle</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Java Streams Example</name>
-    <url>https://gitlab.com/frankhjung1/java-streams</url>
+    <name>9 Letter Word Puzzle</name>
+    <description>Java Solution to 9 Letter Word Puzzle</description>
+    <url>https://gitlab.com/frankhjung1/java-wordpuzzle</url>
     <developers>
         <developer>
             <id>frank</id>
@@ -22,9 +23,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git@gitlab.com:frankhjung1/java-streams.git</connection>
-        <developerConnection>scm:git:git@gitlab.com:frankhjung1/java-streams.git</developerConnection>
-        <url>scm:git:git@gitlab.com:frankhjung1/java-streams.git</url>
+        <connection>scm:git@gitlab.com:frankhjung1/java-wordpuzzle.git</connection>
+        <developerConnection>scm:git:git@gitlab.com:frankhjung1/java-wordpuzzle.git</developerConnection>
+        <url>scm:git:git@gitlab.com:frankhjung1/java-wordpuzzle.git</url>
     </scm>
     <distributionManagement>
         <site>
@@ -38,6 +39,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
         <dependency>
             <groupId>com.pholser</groupId>
             <artifactId>junit-quickcheck-generators</artifactId>
@@ -157,7 +163,7 @@
                             </filters>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>${project.groupId}.${project.artifactId}.Main</mainClass>
+                                    <mainClass>${project.groupId}.${project.artifactId}.WordPuzzleApp</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
