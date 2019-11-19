@@ -17,12 +17,17 @@ public class WordPuzzleUtilsTest {
   }
 
   @Test
-  public void isValidWord() {
-    assertTrue("Word is correct", WordPuzzleUtils.isValid(letters, "voice"));
+  public void testValidWord() {
+    assertTrue("Word is correct", WordPuzzleUtils.isValid(letters, "voiced"));
   }
 
   @Test
-  public void isInValidWord() {
-    assertFalse("Word contains bad character", WordPuzzleUtils.isValid(letters, "voixe"));
+  public void testInvalidWord() {
+    assertFalse("bad character", WordPuzzleUtils.isValid(letters, "voixed"));
+  }
+
+  @Test
+  public void testTooManyOs() {
+    assertFalse("too many 'o'`s", WordPuzzleUtils.isValid(letters, "vooiced"));
   }
 }
