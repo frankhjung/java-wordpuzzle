@@ -30,4 +30,9 @@ public class WordPuzzleUtilsTest {
   public void testTooManyOs() {
     assertFalse("too many 'o'`s", WordPuzzleUtils.isValid(letters, "vooiced"));
   }
+
+  @Test
+  public void testTooLarge() {
+    assertFalse("word too large", WordPuzzleUtils.isValid(letters, letters + "moreletters"));
+  }
 }
