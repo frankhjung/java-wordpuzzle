@@ -7,13 +7,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 /** Java solution to the 9 letter word puzzle. */
-@Slf4j
 @Command(
     name = "WordPuzzleApp",
     mixinStandardHelpOptions = true,
@@ -57,12 +55,13 @@ public final class WordPuzzleApp implements Runnable {
     final Path path = Paths.get(dictionary.getAbsolutePath());
     try {
       lines(path)
-          .filter(word -> word.contains(mandatory.toString()))
-          .filter(word -> word.length() >= size && word.length() <= 9)
-          .filter(word -> WordPuzzleUtils.isValid(letters, word))
+          .filter(word -> size <= word.length()) // not too small
+          .filter(word -> word.length() <= 9) // not too large
+          .filter(word -> word.contains(mandatory.toString())) // contains mandatory character
+          .filter(word -> WordPuzzleUtils.isValid(letters, word)) // contains only valid characters
           .forEach(System.out::println);
     } catch (IOException e) {
-      log.error("Could not read file {}", dictionary.toString());
+      System.err.printf("Could not read file %s", dictionary.toString());
     }
   }
 
