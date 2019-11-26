@@ -62,7 +62,7 @@ Version:
 
 ```text
 $ java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -V
-WordPuzzleApp 1.0.0
+WordPuzzleApp 1.0.1
 ```
 
 ### Run
@@ -76,5 +76,6 @@ java -cp target/com.marlo.games.jar com.marlo.games.WordPuzzleApp -s 4 -m c -l a
 
 ## References
 
+* [Hibernate Validator](https://hibernate.org/validator/documentation/getting-started/) - validate command line arguments
 * [Picocli](https://picocli.info/) - advanced command line parser
 * [WordPuzzle - Haskell](https://github.com/frankhjung/haskell-wordpuzzle) - Haskell solution to the 9 Letter Word Puzzle

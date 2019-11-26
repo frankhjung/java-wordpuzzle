@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -15,8 +16,9 @@ import picocli.CommandLine.Option;
 @Command(
     name = "WordPuzzleApp",
     mixinStandardHelpOptions = true,
-    version = "WordPuzzleApp 1.0.0",
+    version = "WordPuzzleApp 1.0.1",
     description = "Solve 9 letter word puzzle.")
+@Slf4j
 public final class WordPuzzleApp implements Runnable {
 
   /** Minimum word size. */
@@ -32,7 +34,7 @@ public final class WordPuzzleApp implements Runnable {
       names = {"-m", "--mandatory"},
       description = "mandatory character")
   @Getter
-  private Character mandatory;
+  private String mandatory;
 
   /** Words must contain only these letters. */
   @Option(
@@ -49,19 +51,29 @@ public final class WordPuzzleApp implements Runnable {
   @Getter
   private File dictionary;
 
-  /** Search file using a stream. */
-  @Override
-  public void run() {
+  /** Get valid words from dictionary. */
+  public void findWords() {
     final Path path = Paths.get(dictionary.getAbsolutePath());
     try {
       lines(path)
           .filter(word -> size <= word.length()) // not too small
           .filter(word -> word.length() <= 9) // not too large
-          .filter(word -> word.contains(mandatory.toString())) // contains mandatory character
+          .filter(word -> word.contains(mandatory)) // contains mandatory character
           .filter(word -> WordPuzzleUtils.isValid(letters, word)) // contains only valid characters
           .forEach(System.out::println);
     } catch (IOException e) {
-      System.err.printf("Could not read file %s", dictionary.toString());
+      log.error("Could not read file {}", dictionary.toString());
+    }
+  }
+
+  /** Validate arguments then search dictionary for valid words. */
+  @Override
+  public void run() {
+    final WordPuzzleBean bean = new WordPuzzleBean(size, mandatory, letters);
+    if (bean.validate()) {
+      findWords();
+    } else {
+      bean.getValidations().stream().forEach(e -> log.error(e.getMessage()));
     }
   }
 

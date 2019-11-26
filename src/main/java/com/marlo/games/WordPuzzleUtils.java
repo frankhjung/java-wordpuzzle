@@ -13,10 +13,10 @@ public final class WordPuzzleUtils {
    * @return true if word is valid
    */
   public static boolean isValid(final String letters, final String word) {
-    List<Character> lettersList =
+    final List<Character> lettersList =
         letters.chars().mapToObj(letter -> (char) letter).collect(Collectors.toList());
-    for (Character w : word.toCharArray()) {
-      boolean changed = lettersList.remove(w);
+    for (final Character w : word.toCharArray()) {
+      final boolean changed = lettersList.remove(w);
       if (!changed) {
         return false;
       }
@@ -24,21 +24,21 @@ public final class WordPuzzleUtils {
     return true;
   }
 
-  /**
-   * Check if a dictionary word is valid.
-   *
-   * @param letters the letters to validate against
-   * @param word the dictionary word to check
-   * @return true if word is valid
-   */
-  public static boolean isValidOld(final String letters, final String word) {
-    List<Character> lettersList =
-        letters.chars().mapToObj(letter -> (char) letter).collect(Collectors.toList());
-    List<Character> wordAsList =
-        word.chars().mapToObj(letter -> (char) letter).collect(Collectors.toList());
-    for (Character letter : lettersList) {
-      wordAsList.remove(letter);
-    }
-    return wordAsList.isEmpty();
-  }
+  //  /**
+  //   * Check if a dictionary word is valid.
+  //   *
+  //   * @param letters the letters to validate against
+  //   * @param word the dictionary word to check
+  //   * @return true if word is valid
+  //   */
+  //  public static boolean isValidOld(final String letters, final String word) {
+  //    List<Character> lettersList =
+  //        letters.chars().mapToObj(letter -> (char) letter).collect(Collectors.toList());
+  //    List<Character> wordAsList =
+  //        word.chars().mapToObj(letter -> (char) letter).collect(Collectors.toList());
+  //    for (Character letter : lettersList) {
+  //      wordAsList.remove(letter);
+  //    }
+  //    return wordAsList.isEmpty();
+  //  }
 }
