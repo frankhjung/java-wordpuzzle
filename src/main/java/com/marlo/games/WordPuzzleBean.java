@@ -15,17 +15,24 @@ import lombok.Setter;
 @Setter
 public class WordPuzzleBean {
 
+  /** Size validation message. */
+  public static final String SIZE_MESSAGE = "Size: Expected integer in range 1..9";
+  /** Mandatory validation message */
+  public static final String MANDATORY_MESSAGE = "Mandatory: Expected 1 alphabetic letter";
+  /** Letters validation message */
+  public static final String LETTERS_MESSAGE = "Letters: Expected 9 alphabetic letters";
+
   /** Minimum word size. */
-  @Min(value = 1, message = "Size: Expected integer in range 1..9")
-  @Max(value = 9, message = "Size: Expected integer in range 1..9")
+  @Min(value = 1, message = SIZE_MESSAGE)
+  @Max(value = 9, message = SIZE_MESSAGE)
   private int size;
 
   /** Mandatory character. Every word must contain this character. */
-  @Pattern(regexp = "^[a-z]{1}$", message = "Mandatory: Expected 1 alphabetic letter")
+  @Pattern(regexp = "^[a-z]{1}$", message = MANDATORY_MESSAGE)
   private String mandatory;
 
   /** Words must contain only these letters. */
-  @Pattern(regexp = "^[a-z]{9}$", message = "Letters: Expected 9 alphabetic letters")
+  @Pattern(regexp = "^[a-z]{9}$", message = LETTERS_MESSAGE)
   private String letters;
 
   /** Bean validations if any. */

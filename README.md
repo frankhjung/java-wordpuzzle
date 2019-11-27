@@ -1,8 +1,12 @@
 # Java Solution to 9 Letter Word Puzzle
 
-Play with Java Streams and solve [9 Letter word Puzzle]().
+Explore Java Streams to solve [9 Letter word Puzzle](https://nineletterword.tompaton.com/adevcrsoi/).
 
-See also the Haskell solution.
+See also the other language solutions:
+ 
+* [Haskell](https://gitlab.com/frankhjung1/haskell-wordpuzzle)
+* [Java](https://gitlab.com/frankhjung1/java-wordpuzzle)
+* [Python](https://gitlab.com/frankhjung1/python-wordpuzzle)
 
 ## Build
 
@@ -70,12 +74,13 @@ WordPuzzleApp 1.0.1
 Run puzzle solution over reference data:
 
 ```bash
-mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args="-s 4 -m c -l adevcrsoi"
-java -cp target/com.marlo.games.jar com.marlo.games.WordPuzzleApp -s 4 -m c -l adevcrsoi
+mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args="-m c -l adevcrsoi"
+java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -m c -l adevcrsoi
 ```
 
 ## References
 
 * [Hibernate Validator](https://hibernate.org/validator/documentation/getting-started/) - validate command line arguments
+* [Junit-QuickCheck](https://github.com/pholser/junit-quickcheck)
 * [Picocli](https://picocli.info/) - advanced command line parser
 * [WordPuzzle - Haskell](https://github.com/frankhjung/haskell-wordpuzzle) - Haskell solution to the 9 Letter Word Puzzle

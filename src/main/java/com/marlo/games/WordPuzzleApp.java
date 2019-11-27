@@ -73,7 +73,7 @@ public final class WordPuzzleApp implements Runnable {
     if (bean.validate()) {
       findWords();
     } else {
-      bean.getValidations().stream().forEach(e -> log.error(e.getMessage()));
+      bean.getValidations().stream().forEach(e -> log.error("Validation: {}", e.getMessage()));
     }
   }
 

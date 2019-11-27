@@ -3,9 +3,12 @@
 builds
 cache
 *.class
+.classpath
+.factorypath
 .idea
 *.iml
 *.jar
 .project
+.settings/
 .*.swp
 target
