@@ -95,7 +95,7 @@ public class WordPuzzleBeanTest {
     Assume.assumeTrue(mandatory < 'a' || mandatory > 'z');
     bean.setMandatory(String.valueOf(mandatory));
     log.debug("Mandatory: {}", bean.getMandatory());
-    assertFalse(Boolean.valueOf(bean.validate()));
+    assertFalse(bean.validate());
     assertEquals(MANDATORY_MESSAGE, bean.getValidations().iterator().next().getMessage());
   }
 
@@ -109,7 +109,7 @@ public class WordPuzzleBeanTest {
       final @Size(min = 9, max = 9) List<@From(AlphabeticGenerator.class) Character> letters) {
     bean.setLetters(letters.stream().map(String::valueOf).collect(Collectors.joining()));
     log.debug("Letters: {}", bean.getLetters());
-    assertTrue(Boolean.valueOf(bean.validate()));
+    assertTrue(bean.validate());
     assertTrue(VALIDATION_ERROR, bean.getValidations().isEmpty());
   }
 
