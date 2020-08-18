@@ -13,7 +13,7 @@ See also the other language solutions:
 To build this project with Maven, run
 
 ```bash
-mvn clean validate fmt:format sortpom:sort package
+mvn clean fmt:format sortpom:sort install
 ```
 
 This will format code, sort POM and create a JAR package.
@@ -42,7 +42,7 @@ java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -s 
 Print program help message:
 
 ```bash
-java -cp target/com.marlo.games.jar com.marlo.games.WordPuzzleApp -h
+java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -h
 ```
 
 Help message:
