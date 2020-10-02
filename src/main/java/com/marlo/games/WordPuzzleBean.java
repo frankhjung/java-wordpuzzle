@@ -17,9 +17,9 @@ public class WordPuzzleBean {
 
   /** Size validation message. */
   public static final String SIZE_MESSAGE = "Size: Expected integer in range 1..9";
-  /** Mandatory validation message */
+  /** Mandatory validation message. */
   public static final String MANDATORY_MESSAGE = "Mandatory: Expected 1 alphabetic letter";
-  /** Letters validation message */
+  /** Letters validation message. */
   public static final String LETTERS_MESSAGE = "Letters: Expected 9 alphabetic letters";
 
   /** Minimum word size. */
@@ -28,7 +28,7 @@ public class WordPuzzleBean {
   private int size;
 
   /** Mandatory character. Every word must contain this character. */
-  @Pattern(regexp = "^[a-z]{1}$", message = MANDATORY_MESSAGE)
+  @Pattern(regexp = "^[a-z]$", message = MANDATORY_MESSAGE)
   private String mandatory;
 
   /** Words must contain only these letters. */
