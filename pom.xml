@@ -34,6 +34,7 @@
         </site>
     </distributionManagement>
     <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,12 +53,12 @@
         <dependency>
             <groupId>com.pholser</groupId>
             <artifactId>junit-quickcheck-generators</artifactId>
-            <version>0.9</version>
+            <version>0.9.3</version>
         </dependency>
         <dependency>
             <groupId>info.picocli</groupId>
             <artifactId>picocli</artifactId>
-            <version>4.1.1</version>
+            <version>4.3.1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -72,35 +73,35 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.1.0.Final</version>
+            <version>6.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
-            <version>6.1.0.Final</version>
+            <version>6.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
+            <version>1.18.14</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.pholser</groupId>
             <artifactId>junit-quickcheck-core</artifactId>
-            <version>0.9</version>
+            <version>0.9.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13-rc-1</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -109,8 +110,7 @@
                     <version>2.9</version>
                     <executions>
                         <execution>
-                            <id>format</id>
-                            <phase>verify</phase>
+                            <phase>validate</phase>
                             <goals>
                                 <goal>check</goal>
                                 <goal>format</goal>
@@ -124,7 +124,7 @@
                     <version>2.10.0</version>
                     <executions>
                         <execution>
-                            <phase>verify</phase>
+                            <phase>validate</phase>
                             <goals>
                                 <goal>sort</goal>
                             </goals>
@@ -135,7 +135,7 @@
                         <sortPlugins>groupId,artifactId</sortPlugins>
                         <sortDependencies>scope,groupId,artifactId</sortDependencies>
                         <sortProperties>true</sortProperties>
-                        <verifyFail>stop</verifyFail>
+                        <verifyFail>Stop</verifyFail>
                     </configuration>
                 </plugin>
             </plugins>
@@ -145,6 +145,28 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>3.1.12.2</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <effort>Max</effort>
+                    <xmlOutput>true</xmlOutput>
+                    <includeTests>true</includeTests>
+                    <threshold>Medium</threshold>
+                    <failOnError>true</failOnError>
+                    <plugins>
+                        <plugin>
+                            <groupId>jp.skypencil.findbugs.slf4j</groupId>
+                            <artifactId>bug-pattern</artifactId>
+                            <version>1.4.0</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-pmd-plugin</artifactId>
@@ -192,8 +214,24 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.8.2</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>target/site</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M4</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -218,11 +256,12 @@
         </plugins>
     </build>
     <reporting>
-        <outputDirectory>${basedir}/target/site</outputDirectory>
+        <outputDirectory>target/site</outputDirectory>
         <plugins>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>3.1.12.2</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -238,7 +277,7 @@
                     <skipEmptyReport>false</skipEmptyReport>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <includeTests>true</includeTests>
-                    <classFilesDirectory>${basedir}/target/classes</classFilesDirectory>
+                    <classFilesDirectory>target/classes</classFilesDirectory>
                     <failOnError>true</failOnError>
                     <plugins>
                         <plugin>
@@ -248,6 +287,19 @@
                         </plugin>
                     </plugins>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc-no-fork</report>
+                            <report>test-javadoc-no-fork</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -270,7 +322,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M4</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
