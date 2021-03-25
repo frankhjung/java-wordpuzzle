@@ -113,7 +113,6 @@
                             <phase>validate</phase>
                             <goals>
                                 <goal>check</goal>
-                                <goal>format</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -126,7 +125,7 @@
                         <execution>
                             <phase>validate</phase>
                             <goals>
-                                <goal>sort</goal>
+                                <goal>verify</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -141,6 +140,14 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>com.coveo</groupId>
+                <artifactId>fmt-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.ekryd.sortpom</groupId>
+                <artifactId>sortpom-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
