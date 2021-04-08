@@ -32,14 +32,16 @@ public final class WordPuzzleApp implements Runnable {
   /** Mandatory character. Every word must contain this character. */
   @Option(
       names = {"-m", "--mandatory"},
-      description = "mandatory character")
+      description = "mandatory character",
+      required = true)
   @Getter
   private String mandatory;
 
   /** Words must contain only these letters. */
   @Option(
       names = {"-l", "--letters"},
-      description = "letters to create words from")
+      description = "letters to create words from",
+      required = true)
   @Getter
   private String letters;
 

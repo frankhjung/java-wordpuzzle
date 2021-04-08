@@ -25,8 +25,8 @@ build:
     - tags
   script:
     - mvn ${MAVEN_CLI_OPTS} clean package
-    - mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args='--help'
-    - java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -s 4 -m c -l adevcrsoi
+    - mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp
+    - java -jar target/com.marlo.games.1.0.1.jar -s 4 -m c -l adevcrsoi
   artifacts:
     paths:
       - target

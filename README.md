@@ -32,7 +32,7 @@ From [über executable JAR](https://maven.apache.org/plugins/maven-shade-plugin/
 
 ```bash
 mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args="-s <size> -m <mandatory> -l <letters> [-d <dictionary>]"
-java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -s <size> -m <mandatory> -l <letters> [-d <dictionary>]
+java -jar target/com.marlo.games.1.0.1.jar -s <size> -m <mandatory> -l <letters> [-d <dictionary>]
 ```
 
 ## Examples
