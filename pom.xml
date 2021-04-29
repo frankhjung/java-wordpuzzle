@@ -19,7 +19,10 @@
             <roles>
                 <role>consultant</role>
             </roles>
-            <timezone>+10</timezone>
+            <timezone>Australia/Melbourne</timezone>
+            <properties>
+                <picUrl>http://2.gravatar.com/avatar/84b4cc34429fbb55d925679efa9a8c30</picUrl>
+            </properties>
         </developer>
     </developers>
     <scm>
