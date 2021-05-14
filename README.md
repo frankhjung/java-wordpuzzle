@@ -3,7 +3,7 @@
 Explore Java Streams to solve [9 Letter word Puzzle](https://nineletterword.tompaton.com/adevcrsoi/).
 
 See also the other language solutions:
- 
+
 * [Haskell](https://gitlab.com/frankhjung1/haskell-wordpuzzle)
 * [Java](https://gitlab.com/frankhjung1/java-wordpuzzle)
 * [Python](https://gitlab.com/frankhjung1/python-wordpuzzle)
@@ -83,4 +83,12 @@ java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -m 
 * [Hibernate Validator](https://hibernate.org/validator/documentation/getting-started/) - validate command line arguments
 * [Junit-QuickCheck](https://github.com/pholser/junit-quickcheck)
 * [Picocli](https://picocli.info/) - advanced command line parser
-* [WordPuzzle - Haskell](https://github.com/frankhjung/haskell-wordpuzzle) - Haskell solution to the 9 Letter Word Puzzle
+
+## Other Implementations
+
+* [Haskell](https://gitlab.com/frankhjung1/haskell-wordpuzzle)
+* [Java](https://gitlab.com/frankhjung1/java-wordpuzzle)
+* [Kotlin](https://gitlab.com/frankhjung1/kotlin-wordpuzzle)
+* [Go](https://gitlab.com/frankhjung1/go-wordpuzzle)
+* [Python](https://gitlab.com/frankhjung1/python-wordpuzzle)
+
