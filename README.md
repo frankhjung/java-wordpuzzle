@@ -1,12 +1,7 @@
 # Java Solution to 9 Letter Word Puzzle
 
-Explore Java Streams to solve [9 Letter word Puzzle](https://nineletterword.tompaton.com/adevcrsoi/).
-
-See also the other language solutions:
-
-* [Haskell](https://gitlab.com/frankhjung1/haskell-wordpuzzle)
-* [Java](https://gitlab.com/frankhjung1/java-wordpuzzle)
-* [Python](https://gitlab.com/frankhjung1/python-wordpuzzle)
+Explore Java Streams to solve [9 Letter word
+Puzzle](https://nineletterword.tompaton.com/adevcrsoi/).
 
 ## Build
 
@@ -28,7 +23,8 @@ mvn javadoc:javadoc site
 
 ## Run
 
-From [über executable JAR](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html):
+From [über executable
+JAR](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html):
 
 ```bash
 mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args="-s <size> -m <mandatory> -l <letters> [-d <dictionary>]"
@@ -78,12 +74,6 @@ mvn exec:java -Dexec.mainClass=com.marlo.games.WordPuzzleApp -Dexec.args="-m c -
 java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -m c -l adevcrsoi
 ```
 
-## References
-
-* [Hibernate Validator](https://hibernate.org/validator/documentation/getting-started/) - validate command line arguments
-* [Junit-QuickCheck](https://github.com/pholser/junit-quickcheck)
-* [Picocli](https://picocli.info/) - advanced command line parser
-
 ## Other Implementations
 
 * [Haskell](https://gitlab.com/frankhjung1/haskell-wordpuzzle)
@@ -92,3 +82,8 @@ java -cp target/com.marlo.games-wordpuzzle.jar com.marlo.games.WordPuzzleApp -m 
 * [Go](https://gitlab.com/frankhjung1/go-wordpuzzle)
 * [Python](https://gitlab.com/frankhjung1/python-wordpuzzle)
 
+## References
+
+* [Hibernate Validator](https://hibernate.org/validator/documentation/getting-started/) - validate command line arguments
+* [Junit-QuickCheck](https://github.com/pholser/junit-quickcheck)
+* [Picocli](https://picocli.info/) - advanced command line parser
