@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordPuzzleApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">9 Letter Word Puzzle</a> &gt; <a href="index.source.html" class="el_package">com.marlo.games</a> &gt; <span class="el_source">WordPuzzleApp.java</span></div><h1>WordPuzzleApp.java</h1><pre class="source lang-java linenums">package com.marlo.games;
+
+import static java.nio.file.Files.lines;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+
+/** Java solution to the 9 letter word puzzle. */
+@Command(
+    name = &quot;WordPuzzleApp&quot;,
+    mixinStandardHelpOptions = true,
+    version = &quot;WordPuzzleApp 1.0.1&quot;,
+    description = &quot;Solve 9 letter word puzzle.&quot;)
+<span class="nc" id="L21">@Slf4j</span>
+<span class="nc" id="L22">public final class WordPuzzleApp implements Runnable {</span>
+
+  /** Minimum word size. */
+  @Option(
+      names = {&quot;-s&quot;, &quot;--size&quot;},
+      description = &quot;minimum word size&quot;,
+      defaultValue = &quot;4&quot;)
+<span class="nc" id="L29">  @Getter</span>
+  private int size;
+
+  /** Mandatory character. Every word must contain this character. */
+  @Option(
+      names = {&quot;-m&quot;, &quot;--mandatory&quot;},
+      description = &quot;mandatory character&quot;,
+      required = true)
+<span class="nc" id="L37">  @Getter</span>
+  private String mandatory;
+
+  /** Words must contain only these letters. */
+  @Option(
+      names = {&quot;-l&quot;, &quot;--letters&quot;},
+      description = &quot;letters to create words from&quot;,
+      required = true)
+<span class="nc" id="L45">  @Getter</span>
+  private String letters;
+
+  /** The file to search. */
+  @Option(
+      names = {&quot;-d&quot;, &quot;--dictionary&quot;},
+      description = &quot;dictionary to use in word search&quot;,
+      defaultValue = &quot;dictionary/british&quot;)
+<span class="nc" id="L53">  @Getter</span>
+  private File dictionary;
+
+  /** Get valid words from dictionary. */
+  public void findWords() {
+<span class="nc" id="L58">    final Path path = Paths.get(dictionary.getAbsolutePath());</span>
+    try {
+<span class="nc" id="L60">      lines(path)</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">          .filter(word -&gt; size &lt;= word.length()) // not too small</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">          .filter(word -&gt; word.length() &lt;= 9) // not too large</span>
+<span class="nc" id="L63">          .filter(word -&gt; word.contains(mandatory)) // contains mandatory character</span>
+<span class="nc" id="L64">          .filter(word -&gt; WordPuzzleUtils.isValid(letters, word)) // contains only valid characters</span>
+<span class="nc" id="L65">          .forEach(System.out::println);</span>
+<span class="nc" id="L66">    } catch (IOException e) {</span>
+<span class="nc" id="L67">      log.error(&quot;Could not read file {}&quot;, dictionary.toString());</span>
+<span class="nc" id="L68">    }</span>
+<span class="nc" id="L69">  }</span>
+
+  /** Validate arguments then search dictionary for valid words. */
+  @Override
+  public void run() {
+<span class="nc" id="L74">    final WordPuzzleBean bean = new WordPuzzleBean(size, mandatory, letters);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">    if (bean.validate()) {</span>
+<span class="nc" id="L76">      findWords();</span>
+    } else {
+<span class="nc" id="L78">      bean.getValidations().forEach(e -&gt; log.error(&quot;Validation: {}&quot;, e.getMessage()));</span>
+    }
+<span class="nc" id="L80">  }</span>
+
+  /**
+   * Search file for string using Streams. Get file name from first argument.
+   *
+   * @param args the input arguments
+   */
+  public static void main(final String[] args) {
+<span class="nc" id="L88">    new CommandLine(new WordPuzzleApp()).execute(args);</span>
+<span class="nc" id="L89">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.marlo.games","l":"AlphabeticGenerator"},{"p":"com.marlo.games","l":"WordPuzzleBeanTest"},{"p":"com.marlo.games","l":"WordPuzzleUtilsTest"}]
