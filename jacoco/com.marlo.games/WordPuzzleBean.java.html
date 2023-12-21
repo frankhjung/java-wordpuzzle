@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordPuzzleBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">9 Letter Word Puzzle</a> &gt; <a href="index.source.html" class="el_package">com.marlo.games</a> &gt; <span class="el_source">WordPuzzleBean.java</span></div><h1>WordPuzzleBean.java</h1><pre class="source lang-java linenums">package com.marlo.games;
+
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
+
+/** Bean to validate Word Puzzle command line arguments. */
+@Getter
+<span class="pc" id="L15">@Setter</span>
+public class WordPuzzleBean {
+
+  /** Size validation message. */
+  public static final String SIZE_MESSAGE = &quot;Size: Expected integer in range 1..9&quot;;
+  /** Mandatory validation message. */
+  public static final String MANDATORY_MESSAGE = &quot;Mandatory: Expected 1 alphabetic letter&quot;;
+  /** Letters validation message. */
+  public static final String LETTERS_MESSAGE = &quot;Letters: Expected 9 alphabetic letters&quot;;
+
+  /** Minimum word size. */
+  @Min(value = 1, message = SIZE_MESSAGE)
+  @Max(value = 9, message = SIZE_MESSAGE)
+<span class="fc" id="L28">  private int size;</span>
+
+  /** Mandatory character. Every word must contain this character. */
+  @Pattern(regexp = &quot;^[a-z]$&quot;, message = MANDATORY_MESSAGE)
+<span class="fc" id="L32">  private String mandatory;</span>
+
+  /** Words must contain only these letters. */
+  @Pattern(regexp = &quot;^[a-z]{9}$&quot;, message = LETTERS_MESSAGE)
+<span class="fc" id="L36">  private String letters;</span>
+
+  /** Bean validations if any. */
+<span class="fc" id="L39">  private Set&lt;ConstraintViolation&lt;WordPuzzleBean&gt;&gt; validations;</span>
+
+  /** Construct bean from command line arguments. */
+<span class="fc" id="L42">  public WordPuzzleBean(final int size, final String mandatory, final String letters) {</span>
+<span class="fc" id="L43">    this.size = size;</span>
+<span class="fc" id="L44">    this.mandatory = mandatory;</span>
+<span class="fc" id="L45">    this.letters = letters;</span>
+<span class="fc" id="L46">  }</span>
+
+  /** Validate the values of this bean. */
+  public boolean validate() {
+<span class="fc" id="L50">    final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();</span>
+<span class="fc" id="L51">    validations = validator.validate(this);</span>
+<span class="fc" id="L52">    return validations.isEmpty();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.marlo.games","l":"WordPuzzleApp"},{"p":"com.marlo.games","l":"WordPuzzleBean"},{"p":"com.marlo.games","l":"WordPuzzleUtils"}]
